@@ -69,7 +69,7 @@ resource "nsxt_nat_rule" "PKS" {
   action                    = "DNAT"
   enabled                   = true
   translated_network        = "${var.pks_api_private_ip}"
-  match_destination_network = "${var.pks_public_ip}"
+  match_destination_network = "${var.pks_api_external_ip}"
 }
 
 // TODO: PKS API vm also needs SNAT in case we keep them
