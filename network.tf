@@ -36,7 +36,14 @@ module "deployment_subnet" {
   t1_advertise_lb_vip_routes = true
 }
 
-// TODO: services network
+module "services_subnet" {
+  source = "./modules/nsxt-subnet"
+  env_name = "${var.env_name}"
+  subnet_name = "PAS-Deployment"
+  subnet_cidr = "${var.services_subnet_cidr}"
+  overlay_tz_id = "${data.nsxt_transport_zone.overlay_tz.id}"
+  t0_router_id = "${data.nsxt_logical_tier0_router.t0_router.id}"
+}
 
 resource "nsxt_ip_block" "pas_container_subnets_ip_block" {
   description  = "Subnets are allocated from this pool to each newly-created Org"

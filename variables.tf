@@ -131,6 +131,11 @@ variable "deployment_subnet_cidr" {
   type = "string"
 }
 
+variable "services_subnet_cidr" {
+  default = "192.168.3.1/24"
+  type = "string"
+}
+
 variable "container_ip_block_cidr" {
   default     = "10.12.0.0/14"
   description = "The CIDR of the container IP Block, e.g. `10.12.0.0/14`"
